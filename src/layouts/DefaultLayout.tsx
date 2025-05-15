@@ -1,25 +1,22 @@
 import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Header from '../components/Header';
-
-// DefaultLayout 컴포넌트 props 타입 정의
-interface DefaultLayoutProps {
-  children: React.ReactNode;
-}
 
 /**
  * 기본 레이아웃 컴포넌트
  * - Header, Main Content, Footer 포함
  * - 공통 레이아웃 구조 제공
+ * - React Router Outlet 사용
  */
-const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children }) => {
+const DefaultLayout: React.FC = () => {
   return (
     <div className="min-h-screen flex flex-col bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark transition-colors duration-300">
       {/* 헤더 */}
       <Header />
       
-      {/* 메인 콘텐츠 - 자식 요소 포함 */}
+      {/* 메인 콘텐츠 - React Router Outlet 사용 */}
       <main className="flex-grow p-4 md:p-6 lg:p-8">
-        {children}
+        <Outlet />
       </main>
       
       {/* 푸터 */}
