@@ -1,9 +1,2 @@
-/* Minimal style for centering */
-.app-welcome {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 2rem;
-  font-weight: bold;
-}
+/* 추가 스타일이 필요하면 이곳에 정의합니다. */
+/* 대부분의 스타일은 Tailwind로 처리되므로 현재 이 파일은 거의 비어있습니다. */
