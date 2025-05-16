@@ -15,6 +15,7 @@ node_modules
 /dist-ssr
 
 # misc
+.env
 .env.local
 .env.*.local
 *.tsbuildinfo

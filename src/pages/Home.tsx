@@ -1,4 +1,5 @@
 import React from 'react';
+import PageTitle from '../components/PageTitle';
 
 /**
  * 홈페이지 컴포넌트
@@ -9,6 +10,7 @@ import React from 'react';
 const Home: React.FC = () => {
   return (
     <section className="max-w-4xl mx-auto">
+      <PageTitle title="Home" />
       {/* 인트로 섹션 */}
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 md:p-8 mb-6 
                    bg-gradient-to-r from-primary-light to-secondary-light 
