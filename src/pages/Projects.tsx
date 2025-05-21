@@ -13,7 +13,7 @@ const Projects: React.FC = () => {
       title: 'Portfolio Website',
       description: 'A personal portfolio website built with React, TypeScript and Tailwind CSS.',
       tech: ['React', 'TypeScript', 'Tailwind CSS'],
-      image: 'https://via.placeholder.com/400x250?text=Portfolio',
+      image: 'https://placehold.co/400x250/svg?text=Portfolio',
       link: '#'
     },
     {
@@ -21,7 +21,7 @@ const Projects: React.FC = () => {
       title: 'E-commerce Platform',
       description: 'An online shopping platform with product listings, cart functionality, and checkout process.',
       tech: ['React', 'Redux', 'Node.js', 'MongoDB'],
-      image: 'https://via.placeholder.com/400x250?text=E-commerce',
+      image: 'https://placehold.co/400x250/svg?text=E-commerce',
       link: '#'
     },
     {
@@ -29,7 +29,7 @@ const Projects: React.FC = () => {
       title: 'Task Management App',
       description: 'A productivity application for managing tasks, projects, and deadlines.',
       tech: ['React', 'Firebase', 'Material UI'],
-      image: 'https://via.placeholder.com/400x250?text=Task+App',
+      image: 'https://placehold.co/400x250/svg?text=Task+App',
       link: '#'
     },
     {
@@ -37,7 +37,7 @@ const Projects: React.FC = () => {
       title: 'Weather Dashboard',
       description: 'Real-time weather information dashboard with location-based forecasts.',
       tech: ['JavaScript', 'Weather API', 'Chart.js'],
-      image: 'https://via.placeholder.com/400x250?text=Weather+App',
+      image: 'https://placehold.co/400x250/svg?text=Weather+App',
       link: '#'
     }
   ];
