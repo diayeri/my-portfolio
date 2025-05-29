@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import ToggleSwitch from './ToggleSwitch';
-import { scrollToElement } from '@/utils/scroll';
 
 // Header 컴포넌트 props 타입 정의
 interface HeaderProps {
@@ -18,8 +17,7 @@ interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ className = '' }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const navigate = useNavigate();
-  
+
   // 스크롤 이벤트 감지
   useEffect(() => {
     const handleScroll = () => {
@@ -30,31 +28,6 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
   
-  // 경로에 따라 내비게이션 처리 방식 결정
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    e.preventDefault();
-    
-    // 프로젝트 상세 페이지에서만 홈으로 이동하고 스크롤
-    if (location.pathname.startsWith('/projects/')) {
-      navigate('/');
-      // 페이지 이동 후 DOM이 업데이트될 시간을 주기 위해 약간의 지연 추가
-      setTimeout(() => {
-        scrollToElement(sectionId);
-      }, 100);
-    } 
-    // 프로젝트 목록 페이지에서만 홈으로 이동 (상세 페이지가 아닌 프로젝트 목록 페이지)
-    else if (location.pathname === '/projects') {
-      navigate('/');
-      setTimeout(() => {
-        scrollToElement(sectionId);
-      }, 100);
-    }
-    // 이미 홈페이지에 있으면 바로 스크롤
-    else {
-      scrollToElement(sectionId);
-    }
-  };
-  
   return (
     <header 
       className={`p-4 md:p-6 flex flex-wrap justify-between items-center fixed w-full z-50 transition-all duration-300 ${
@@ -64,79 +37,40 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
       } ${className}`}
     >
       <div className="flex items-center">
-        <a 
-          href="/"
+        <Link 
+          to="/"
           className="text-xl md:text-2xl font-bold transition-colors hover:text-primary-light dark:hover:text-primary-dark"
-          onClick={(e) => handleNavClick(e, 'hero')}
         >
           My Portfolio
-        </a>
+        </Link>
       </div>
       
       {/* 내비게이션 메뉴 */}
       <nav className="flex-grow md:flex-grow-0 mt-4 md:mt-0 w-full md:w-auto md:mx-8 order-3 md:order-2">
         <ul className="flex justify-center space-x-8">
           <li>
-            <a 
-              href="/#hero"
-              className={`transition-colors ${
-                location.pathname === '/' 
-                ? "hover:text-primary-light dark:hover:text-primary-dark" 
-                : "text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
-              }`}
-              onClick={(e) => handleNavClick(e, 'hero')}
+            <Link 
+              to="/projects"
+              className={`transition-colors ${location.pathname.startsWith('/projects') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
             >
-              Home
-            </a>
+              Projects
+            </Link>
           </li>
           <li>
-            <a 
-              href="/#about"
-              className={`transition-colors ${
-                location.pathname === '/' 
-                ? "hover:text-primary-light dark:hover:text-primary-dark" 
-                : "text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
-              }`}
-              onClick={(e) => handleNavClick(e, 'about')}
+            <Link 
+              to="/about"
+              className={`transition-colors ${location.pathname.startsWith('/about') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
             >
               About
-            </a>
+            </Link>
           </li>
           <li>
-            {location.pathname === '/projects' ? (
-              <a 
-                href="/#projects"
-                className="text-primary-light dark:text-primary-dark transition-colors"
-                onClick={(e) => handleNavClick(e, 'projects')}
-              >
-                Projects
-              </a>
-            ) : (
-              <a 
-                href="/#projects"
-                className={`transition-colors ${
-                  location.pathname === '/' 
-                  ? "hover:text-primary-light dark:hover:text-primary-dark" 
-                  : "text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
-                }`}
-                onClick={(e) => handleNavClick(e, 'projects')}
-              >
-                Projects
-              </a>
-            )}
-          </li>
-          <li>
-            <a 
-              href="/#contact"
-              className={`transition-colors ${
-                location.pathname === '/' 
-                ? "hover:text-primary-light dark:hover:text-primary-dark" 
-                : "text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark"
-              }`}
-              onClick={(e) => handleNavClick(e, 'contact')}
+            <Link 
+              to="/contact"
+              className={`transition-colors ${location.pathname.startsWith('/contact') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
             >
               Contact
-            </a>
+            </Link>
           </li>
         </ul>
       </nav>

@@ -1,5 +1,4 @@
 import React from 'react';
-import PageTitle from '../components/PageTitle';
 
 /**
  * Contact 페이지 컴포넌트
@@ -15,10 +14,7 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <PageTitle title="Contact Me" />
-      <h1 className="text-3xl md:text-4xl font-bold mb-6">Contact Me</h1>
-      
+    <div className="max-w-4xl mx-auto py-24 px-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* 연락처 정보 */}
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
