@@ -73,41 +73,38 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ className = '' }) => {
     setIsHidden(isMobile);
   }, []);
 
+  // 기본 커서 숨기기
+  useEffect(() => {
+    if (isPointer || isClicked) {
+      document.body.style.cursor = 'none';
+      document.documentElement.style.cursor = 'none';
+    } else {
+      document.body.style.cursor = '';
+      document.documentElement.style.cursor = '';
+    }
+    return () => {
+      document.body.style.cursor = '';
+      document.documentElement.style.cursor = '';
+    };
+  }, [isPointer, isClicked]);
+
   if (isHidden) {
     return null;
   }
 
   return (
-    <>
-      {/* 커서 외부 원 */}
-      <div
-        className={`fixed pointer-events-none z-50 rounded-full mix-blend-difference transition-transform duration-300 ${
-          isPointer || isClicked ? 'scale-150' : 'scale-100'
-        } ${className}`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          height: '30px',
-          width: '30px',
-          backgroundColor: 'white',
-          transform: `translate(-50%, -50%) scale(${isClicked ? 0.8 : isPointer ? 1.2 : 1})`,
-          transition: 'transform 0.2s ease-out, width 0.2s ease-out, height 0.2s ease-out',
-        }}
-      />
-      {/* 커서 내부 점 */}
-      <div
-        className={`fixed pointer-events-none z-50 rounded-full bg-white transition-all duration-200 ease-out ${
-          isPointer || isClicked ? 'opacity-0' : 'opacity-100'
-        }`}
-        style={{
-          left: `${position.x}px`,
-          top: `${position.y}px`,
-          height: '5px',
-          width: '5px',
-          transform: 'translate(-50%, -50%)',
-        }}
-      />
-    </>
+    <div
+      className={`fixed pointer-events-none z-50 rounded-full bg-white mix-blend-difference transition-all duration-150 ${className}`}
+      style={{
+        left: `${position.x}px`,
+        top: `${position.y}px`,
+        height: isPointer || isClicked ? '36px' : '6px',
+        width: isPointer || isClicked ? '36px' : '6px',
+        opacity: 1,
+        transform: 'translate(-50%, -50%)',
+        transition: 'width 0.15s cubic-bezier(0.4,0,0.2,1), height 0.15s cubic-bezier(0.4,0,0.2,1)',
+      }}
+    />
   );
 };
 
