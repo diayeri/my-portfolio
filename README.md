@@ -1,4 +1,4 @@
-# My Portfolio Website
+# UI Dev Portfolio - DY Website
 
 현대적인 웹 기술을 활용한 개인 포트폴리오 웹사이트입니다. 반응형 디자인과 다크 모드 지원으로 다양한 환경에서 최적의 사용자 경험을 제공합니다.
 
@@ -16,12 +16,14 @@
 ## 🛠️ 기술 스택
 
 - **프론트엔드**:
+
   - [React](https://reactjs.org/) - UI 라이브러리
   - [TypeScript](https://www.typescriptlang.org/) - 정적 타입 지원
   - [Tailwind CSS](https://tailwindcss.com/) - 유틸리티 기반 CSS 프레임워크
   - [React Router](https://reactrouter.com/) - 라우팅 라이브러리
 
 - **빌드 도구**:
+
   - [Vite](https://vitejs.dev/) - 빠른 개발 서버 및 빌드 도구
 
 - **분석 및 추적**:
@@ -109,10 +111,12 @@ yarn build
 ## 🔧 커스터마이징
 
 1. **개인 정보 수정**:
+
    - `src/pages` 폴더의 각 페이지를 수정하여 개인 정보를 업데이트하세요.
    - `public` 폴더에 자신의 이미지를 추가하세요.
 
 2. **색상 테마 변경**:
+
    - `tailwind.config.js` 파일에서 색상을 수정하세요.
 
 3. **Google Analytics 설정**:
@@ -127,7 +131,8 @@ yarn build
 이름: 정다영  
 웹사이트: [johndoe.com](https://johndoe.com)  
 GitHub: [@johndoe](https://github.com/johndoe)
-```
+
+````
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
@@ -149,4 +154,4 @@ export default tseslint.config({
     ...reactDom.configs.recommended.rules,
   },
 })
-```
+````

@@ -16,7 +16,7 @@ export const getEnv = (key: string, defaultValue = ''): string => {
  * 사이트 제목 가져오기
  */
 export const getSiteTitle = (): string => {
-  return getEnv('VITE_APP_SITE_TITLE', 'My Portfolio');
+  return getEnv('VITE_APP_SITE_TITLE', 'UI Dev Portfolio - DY');
 };
 
 /**

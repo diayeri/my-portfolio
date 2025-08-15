@@ -23,60 +23,72 @@ const Header: React.FC<HeaderProps> = ({ className = '' }) => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
-    
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  
+
   return (
-    <header 
+    <header
       className={`p-4 md:p-6 flex flex-wrap justify-between items-center fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white dark:bg-gray-900 shadow-md backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90' 
+        isScrolled
+          ? 'bg-white dark:bg-gray-900 shadow-md backdrop-blur-sm bg-opacity-90 dark:bg-opacity-90'
           : 'bg-transparent'
       } ${className}`}
     >
-      <div className="flex items-center">
-        <Link 
-          to="/"
-          className="text-xl md:text-2xl font-bold transition-colors hover:text-primary-light dark:hover:text-primary-dark"
+      <div className='flex items-center'>
+        <Link
+          to='/'
+          className='text-xl font-bold transition-colors md:text-2xl hover:text-primary-light dark:hover:text-primary-dark'
         >
-          My Portfolio
+          UI Dev Portfolio - DY
         </Link>
       </div>
-      
+
       {/* 내비게이션 메뉴 */}
-      <nav className="flex-grow md:flex-grow-0 mt-4 md:mt-0 w-full md:w-auto md:mx-8 order-3 md:order-2">
-        <ul className="flex justify-center space-x-8">
+      <nav className='flex-grow order-3 w-full mt-4 md:flex-grow-0 md:mt-0 md:w-auto md:mx-8 md:order-2'>
+        <ul className='flex justify-center space-x-8'>
           <li>
-            <Link 
-              to="/projects"
-              className={`transition-colors ${location.pathname.startsWith('/projects') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
+            <Link
+              to='/projects'
+              className={`transition-colors ${
+                location.pathname.startsWith('/projects')
+                  ? 'text-primary-light dark:text-primary-dark'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'
+              }`}
             >
               Projects
             </Link>
           </li>
           <li>
-            <Link 
-              to="/about"
-              className={`transition-colors ${location.pathname.startsWith('/about') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
+            <Link
+              to='/about'
+              className={`transition-colors ${
+                location.pathname.startsWith('/about')
+                  ? 'text-primary-light dark:text-primary-dark'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'
+              }`}
             >
               About
             </Link>
           </li>
           <li>
-            <Link 
-              to="/contact"
-              className={`transition-colors ${location.pathname.startsWith('/contact') ? 'text-primary-light dark:text-primary-dark' : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'}`}
+            <Link
+              to='/contact'
+              className={`transition-colors ${
+                location.pathname.startsWith('/contact')
+                  ? 'text-primary-light dark:text-primary-dark'
+                  : 'text-gray-500 dark:text-gray-400 hover:text-primary-light dark:hover:text-primary-dark'
+              }`}
             >
               Contact
             </Link>
           </li>
         </ul>
       </nav>
-      
+
       {/* 다크모드 토글 스위치 */}
-      <div className="order-2 md:order-3">
+      <div className='order-2 md:order-3'>
         <ToggleSwitch />
       </div>
     </header>
