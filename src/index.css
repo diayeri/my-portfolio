@@ -24,6 +24,9 @@
     --color-surface: #fff;
     --color-surface-light: #fff;
     --color-surface-dark: #e9e4dc;
+    --color-gradient-1: #b3e6ee;
+    --color-gradient-2: #cccff1;
+    --color-gradient-3: #e5ccf1;
   }
   .dark {
     --color-primary: #bfa181; /* 강조(베이지) */
@@ -41,12 +44,43 @@
     --color-surface: #232a3a;
     --color-surface-light: #232a3a;
     --color-surface-dark: #2a3142;
+    --color-gradient-1: #0d1b2a;
+    --color-gradient-2: #1b263b;
+    --color-gradient-3: #415a77;
   }
 
   body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    @apply bg-background text-text transition-colors duration-300;
+    @apply text-text transition-colors duration-300;
+    /* @apply bg-background text-text transition-colors duration-300; */
+    margin: 0;
+    height: 100vh;
+
+    /* 처음 그라데이션 세팅 */
+    background: linear-gradient(
+      -45deg,
+      var(--color-gradient-1),
+      var(--color-gradient-2),
+      var(--color-gradient-3),
+      var(--color-gradient-1)
+    );
+    background-size: 400% 400%;
+
+    /* 애니메이션 */
+    animation: gradientFlow 20s ease infinite;
+  }
+
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
   }
 }
