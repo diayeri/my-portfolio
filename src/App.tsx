@@ -16,7 +16,7 @@ const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 // 로딩 Fallback 컴포넌트
 const LoadingFallback = () => (
   <div className='flex items-center justify-center min-h-screen'>
-    <div className='animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary-light dark:border-primary-dark'></div>
+    <div className='w-12 h-12 border-t-2 border-b-2 rounded-full animate-spin border-primary-light dark:border-primary-dark'></div>
   </div>
 );
 
@@ -98,17 +98,17 @@ const AppRoutes = () => {
             <Route
               path='*'
               element={
-                <div className='text-center py-20'>
-                  <h1 className='text-4xl font-bold mb-4'>404</h1>
-                  <p className='text-xl mb-8'>Page not found</p>
+                <div className='py-20 text-center'>
+                  <h1 className='mb-4 text-4xl font-bold'>404</h1>
+                  <p className='mb-8 text-xl'>Page not found</p>
                   <a
                     href='/projects'
-                    className='inline-flex items-center px-6 py-3 rounded-lg bg-primary-light dark:bg-primary-dark text-white hover:opacity-90 transition-opacity'
+                    className='inline-flex items-center px-6 py-3 text-white transition-opacity rounded-lg bg-primary-light dark:bg-primary-dark hover:opacity-90'
                   >
                     Go Projects
                     <svg
                       xmlns='http://www.w3.org/2000/svg'
-                      className='h-5 w-5 ml-2'
+                      className='w-5 h-5 ml-2'
                       fill='none'
                       viewBox='0 0 24 24'
                       stroke='currentColor'

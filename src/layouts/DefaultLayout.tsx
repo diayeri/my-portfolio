@@ -26,61 +26,53 @@ const DefaultLayout: React.FC = () => {
   // 언어를 context로 하위 컴포넌트에 전달
   return (
     <LanguageContext.Provider value={language}>
-      <div className='flex min-h-screen text-xs duration-300 text-text-light dark:text-text-dark md:text-sm lg:text-base'>
-        {/* 다크모드 토글: 페이지 상단 우측에 고정 */}
-        <div className='fixed z-50 flex items-center top-4 right-6'>
-          <ToggleSwitch small />
-          <LanguageSwitch language={language} onToggle={handleLanguageToggle} />
-        </div>
-        {/* Sidebar: always visible except on project detail */}
-        {!isProjectDetail && (
-          <aside
-            className='hidden md:flex flex-col items-center justify-center fixed left-0 top-0 h-screen w-[180px] max-w-xs min-w-[180px] p-6 z-30'
-            style={{ background: 'none', borderRight: 'none' }}
-          >
-            <div className='flex flex-col items-start w-full'>
-              {/* SidebarProfile: 좌상단에 고정 */}
-              <SidebarProfile />
-            </div>
-            {/* 메뉴 묶음만 좌측 정중앙에 위치 */}
-            <nav className='absolute left-0 flex flex-col items-start w-full px-6 -translate-y-1/2 top-1/2'>
-              <ul className='flex flex-col w-full gap-5'>
-                {navItems.map((item) => (
-                  <li key={item.to} className='w-full'>
-                    <Link
-                      to={item.to}
-                      className={`inline py-1 text-left pl-0 font-medium font-mono ${
-                        location.pathname.startsWith(item.to)
-                          ? 'text-primary-light dark:text-primary-dark font-semibold'
-                          : 'hover:text-primary-light dark:hover:text-primary-dark'
-                      }`}
-                    >
-                      {item.label === 'Projects'
-                        ? t('프로젝트', 'Projects')
-                        : item.label === 'About'
-                          ? t('소개', 'About')
-                          : t('연락처', 'Contact')}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className='flex flex-col items-start w-full gap-2 mt-auto'>
-              <footer className='w-full mt-8 text-xs text-left text-secondary-light dark:text-secondary-dark'>
-                &copy; {new Date().getFullYear()} UI Dev Portfolio - DY
-              </footer>
-            </div>
-          </aside>
-        )}
-        {/* Main content area: only this scrolls */}
-        <main
-          className={`${
-            isProjectDetail ? 'w-full' : 'w-full md:pl-60'
-          } flex-grow px-2 py-4 md:py-8 overflow-y-auto`}
-          style={{ height: '100vh' }}
+      <div className='h-screen text-xs duration-300 text-text-light dark:text-text-dark md:text-sm lg:text-base'>
+        <header
+          className='fixed top-0 z-50 flex items-center justify-between w-full px-6 py-5'
+          style={{ background: 'none', borderRight: 'none' }}
         >
+          <a href='/' className='inline-block w-20'>
+            LOGO
+          </a>
+          <nav>
+            <ul className='flex w-full gap-10'>
+              {navItems.map((item) => (
+                <li key={item.to} className='w-full'>
+                  <Link
+                    to={item.to}
+                    className={`font-medium text-nowrap ${
+                      location.pathname.startsWith(item.to)
+                        ? 'text-primary dark:text-primary-dark font-semibold'
+                        : 'hover:text-primary-light dark:hover:text-primary-dark'
+                    }`}
+                  >
+                    {item.label === 'Projects'
+                      ? t('프로젝트', 'Projects')
+                      : item.label === 'About'
+                        ? t('소개', 'About')
+                        : t('연락처', 'Contact')}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+          <div className='flex items-center w-20'>
+            <ToggleSwitch small />
+            <LanguageSwitch
+              language={language}
+              onToggle={handleLanguageToggle}
+            />
+          </div>
+        </header>
+
+        {/* Main content area: only this scrolls */}
+        <main className='w-full flex-grow p-4 md:p-6 overflow-y-auto h-[100vh]'>
+          <div className='fixed border top-2 bottom-2 left-2 right-2'></div>
           <Outlet />
         </main>
+        <footer className='w-full mt-8 text-xs text-left text-secondary-light dark:text-secondary-dark'>
+          &copy; {new Date().getFullYear()} UI Dev Portfolio - DY
+        </footer>
       </div>
     </LanguageContext.Provider>
   );

@@ -67,8 +67,8 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className='flex flex-col w-full max-w-4xl gap-12 p-12 my-24 shadow-md bg-surface-light dark:bg-surface-dark'>
-      {/* <h1 className="mb-6 text-3xl font-bold md:text-4xl">About Me</h1> */}
+    <div className='flex flex-col w-full max-w-4xl gap-12 p-12 mx-auto my-24 shadow-md bg-surface-light dark:bg-surface-dark'>
+      <h1 className='mb-6 text-3xl font-bold md:text-4xl'>About Me</h1>
 
       {/* 프로필 섹션 */}
       <div>

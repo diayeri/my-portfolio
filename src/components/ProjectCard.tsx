@@ -19,30 +19,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   return (
     <article
       className={`
-        relative bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md
+        relative flex bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md
         hover:shadow-xl transition-all duration-300 group
         ${className}
       `}
     >
       {/* 프로젝트 이미지 */}
-      <div className='relative h-48 overflow-hidden'>
+      <div className='relative flex-none overflow-hidden w-60'>
         {Array.isArray(project.images) && project.images.length > 0 ? (
           <img
             src={project.images[0]}
             alt={project.title}
-            className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+            className='object-cover w-full h-full transition-transform duration-500 group-hover:scale-110'
             loading='lazy'
           />
         ) : (
           <img
             src={project.image}
             alt={project.title}
-            className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-110'
+            className='object-cover w-full h-full transition-transform duration-500 group-hover:scale-110'
             loading='lazy'
           />
         )}
-        <div className='absolute inset-0 bg-black bg-opacity-40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center'>
-          <span className='text-white font-medium px-4 py-2 bg-primary-light dark:bg-primary-dark rounded-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300'>
+        <div className='absolute inset-0 flex items-center justify-center transition-opacity duration-300 bg-black opacity-0 bg-opacity-40 group-hover:opacity-100'>
+          <span className='px-4 py-2 font-medium text-white transition-transform duration-300 transform translate-y-4 rounded-lg bg-primary-light dark:bg-primary-dark group-hover:translate-y-0'>
             View Details
           </span>
         </div>
@@ -50,11 +50,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
       {/* 프로젝트 정보 */}
       <div className='p-5'>
-        <h3 className='text-xl font-semibold mb-2 group-hover:text-primary-light dark:group-hover:text-primary-dark'>
+        <h3 className='mb-2 text-xl font-semibold group-hover:text-primary-light dark:group-hover:text-primary-dark'>
           {project.title}
         </h3>
 
-        <p className='text-gray-600 dark:text-gray-300 mb-4 line-clamp-3'>
+        <p className='mb-4 text-gray-600 dark:text-gray-300 line-clamp-3'>
           {project.description}
         </p>
 
@@ -63,7 +63,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           {project.tech.map((tech, index) => (
             <span
               key={index}
-              className='px-2 py-1 text-xs rounded-full bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
+              className='px-2 py-1 text-xs text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200'
             >
               {tech}
             </span>
@@ -72,7 +72,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
 
         {/* 외부 링크 아이콘 (GitHub 있는 경우만 표시) - 링크 대신 버튼 사용 */}
         {project.github && (
-          <div className='absolute top-3 right-3 bg-white dark:bg-gray-800 rounded-full p-2 shadow-md'>
+          <div className='absolute p-2 bg-white rounded-full shadow-md top-3 right-3 dark:bg-gray-800'>
             <button
               type='button'
               className='block text-gray-600 dark:text-gray-300 hover:text-primary-light dark:hover:text-primary-dark'
@@ -97,7 +97,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       </div>
 
       {/* 하단 그라디언트 효과와 "View Project" 텍스트 */}
-      <div className='absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white dark:from-gray-800 to-transparent pointer-events-none' />
+      <div className='absolute bottom-0 left-0 right-0 h-16 pointer-events-none bg-gradient-to-t from-white dark:from-gray-800 to-transparent' />
     </article>
   );
 };

@@ -37,7 +37,7 @@
     /* Gradient (하늘 배경) */
     --color-gradient-1: #b3e6ee; /* 맑은 하늘색 */
     --color-gradient-2: #cccff1; /* 연보라빛 구름색 */
-    --color-gradient-3: #e5ccf1; /* 햇빛이 닿는 연분홍빛 */
+    --color-gradient-3: #e8dcee;
   }
 
   .dark {
@@ -94,16 +94,33 @@
     /* 애니메이션 */
     animation: gradientFlow 20s ease infinite;
   }
+}
 
-  @keyframes gradientFlow {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
+/* 스크롤바 숨기기 */
+::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+}
+body {
+  -ms-overflow-style: none;
+}
+
+/* 오버스크롤 튕김방지 */
+html,
+body {
+  overscroll-behavior: none;
+}
+
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
