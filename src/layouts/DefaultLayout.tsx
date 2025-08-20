@@ -26,7 +26,7 @@ const DefaultLayout: React.FC = () => {
   // 언어를 context로 하위 컴포넌트에 전달
   return (
     <LanguageContext.Provider value={language}>
-      <div className='h-screen text-xs duration-300 text-text-light dark:text-text-dark md:text-sm lg:text-base'>
+      <div className='w-full h-screen text-xs duration-300 text-text-light dark:text-text-dark md:text-sm lg:text-base'>
         <header
           className='fixed top-0 z-50 flex items-center justify-between w-full px-6 py-5'
           style={{ background: 'none', borderRight: 'none' }}
