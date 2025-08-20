@@ -1,0 +1,147 @@
+@keyframes ani-bgc {
+  from {
+    background-color: var(--bgc-before);
+  }
+  to {
+    background-color: var(--bgc-after);
+  }
+}
+@keyframes bg {
+  from {
+    background-color: #bbf1d9;
+  }
+  to {
+    background-color: #b2ebf2;
+    border-radius: 50%;
+  }
+}
+@keyframes glasses {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes glass {
+  0% {
+    background-color: transparent;
+    transform: translate(0, 0);
+  }
+  50% {
+    background-color: #4d342fee;
+    transform: translate(5px, -5px);
+  }
+  100% {
+    background-color: transparent;
+    transform: translate(0, 0);
+  }
+}
+@keyframes pixel {
+  0% {
+    border-radius: 0;
+  }
+  50% {
+    border-radius: 50%;
+    transform: scale(12%, 12%) rotate(1turn);
+  }
+  80% {
+    border-radius: 50%;
+    transform: scale(12%, 12%) translate(0, 200%);
+  }
+  100% {
+    border-radius: 50%;
+    transform: scale(12%, 12%) translate(20%, 20%) rotate(15deg);
+  }
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+section {
+  display: grid;
+  width: 800px;
+  height: 800px;
+  margin: 40px;
+  background-size: contain;
+  grid-template-columns: repeat(24, 1fr);
+  grid-auto-rows: calc(100% / 24);
+  color: aquamarine;
+  animation: pixel 1.5s forwards 6.5s;
+  overflow: hidden;
+
+  /* background-image: url(../src/dia02.JPG); */
+}
+div {
+  /* border: 1px solid black; */
+  /* opacity: 0; */
+}
+.bg {
+  animation: bg 1.5s both alternate infinite 4s;
+}
+.hair {
+  --bgc-before: #212121;
+  --bgc-after: #fec107;
+  animation: ani-bgc 1.5s steps(4) both 1s;
+}
+.hair-light {
+  --bgc-before: #579089;
+  --bgc-after: #ffc928;
+  animation: ani-bgc 3s steps(8) both 1s;
+}
+.hair-dark {
+  --bgc-before: #273238;
+  --bgc-after: #ffb200;
+  animation: ani-bgc 3s steps(8) both 1s;
+}
+.face {
+  --bgc-before: #b2dfdc;
+  --bgc-after: #ffccbb;
+  animation: ani-bgc 2s steps(6) both 1s;
+}
+.face-dark {
+  --bgc-before: #80cbc4;
+  --bgc-after: #ffab91;
+  animation: ani-bgc 2s steps(6) both 1s;
+}
+.lip {
+  --bgc-before: #fec107;
+  --bgc-after: #ff8a66;
+  animation: ani-bgc 3s steps(8) both 1s;
+}
+.nose {
+  --bgc-before: #4dd0e2;
+  --bgc-after: #ffab91;
+  animation: ani-bgc 3s steps(8) both 1s;
+}
+.shirts {
+  --bgc-before: #4cb6ac;
+  --bgc-after: #0e47a1;
+  animation: ani-bgc 4s steps(10) both 1s;
+}
+.shirts-dark {
+  --bgc-before: #00887a;
+  --bgc-after: #1564c0;
+  animation: ani-bgc 3s steps(8) both 1s;
+}
+.glasses {
+  background-color: #fbe9e7;
+  animation: glasses 1s both 4 5s;
+}
+.glass::after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  animation: glass 1s both 4 5s;
+}
+.eye {
+  background-color: #4d342f;
+}
