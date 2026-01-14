@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import LanguageContext from '../context/LanguageContext';
 
 /**
  * About 페이지 컴포넌트
@@ -8,8 +7,6 @@ import LanguageContext from '../context/LanguageContext';
  * - 기술 스택
  */
 const About: React.FC = () => {
-  const language = useContext(LanguageContext);
-
   // 기술 스택 데이터
   const skills = [
     { name: 'React', level: 90 },
@@ -83,9 +80,7 @@ const About: React.FC = () => {
           <div className='md:w-2/3'>
             <h2 className='mb-2 text-2xl font-bold'>정다영</h2>
             <p className='mb-4 font-medium text-primary-light dark:text-primary-dark'>
-              {language === 'ko'
-                ? '프론트엔드 · UI 개발 · 디자인'
-                : 'Frontend · UI Development · Design'}
+              'Frontend · UI Development · Design'
             </p>
 
             <p className='mb-4 text-text-light dark:text-text-dark'>

@@ -2,7 +2,7 @@ import js from '@eslint/js';
 import tseslint from '@typescript-eslint/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
-import { globals } from '@eslint/eslintrc';
+// import { globals } from '@eslint/eslintrc';
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -13,10 +13,10 @@ export default tseslint.config(
       'prettier', // prettier와 충돌되는 ESLint 규칙 비활성화
     ],
     files: ['**/*.{ts,tsx}'],
-    languageOptions: {
-      ecmaVersion: 2020,
-      globals: globals.browser,
-    },
+    // languageOptions: {
+    //   ecmaVersion: 2020,
+    //   globals: globals.browser,
+    // },
     plugins: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,

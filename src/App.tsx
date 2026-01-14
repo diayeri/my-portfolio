@@ -16,7 +16,7 @@ const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
 // 로딩 Fallback 컴포넌트
 const LoadingFallback = () => (
   <div className='flex items-center justify-center min-h-screen'>
-    <div className='w-12 h-12 border-t-2 border-b-2 rounded-full animate-spin border-primary-light dark:border-primary-dark'></div>
+    <div className='w-12 h-12 border-t-2 border-b-2 rounded-full animate-spin border-primary-light'></div>
   </div>
 );
 
@@ -46,7 +46,7 @@ const AppRoutes = () => {
 
   return (
     <>
-      <CustomCursor />
+      {/* <CustomCursor /> */}
 
       <Suspense fallback={<LoadingFallback />}>
         <Routes>
@@ -132,39 +132,6 @@ const AppRoutes = () => {
 };
 
 function App() {
-  // 애플리케이션 초기화
-  // useEffect(() => {
-  //   // Google Analytics 초기화
-  //   initializeGoogleAnalytics();
-
-  //   // 페이지 타이틀 기본값 설정
-  //   document.title = getSiteTitle() || 'Portfolio';
-
-  //   // 테마 변경 감지
-  //   const handleThemeChange = (e: MediaQueryListEvent) => {
-  //     document.documentElement.classList.toggle('dark', e.matches);
-  //   };
-
-  //   const darkModeMediaQuery = window.matchMedia(
-  //     '(prefers-color-scheme: dark)'
-  //   );
-  //   darkModeMediaQuery.addEventListener('change', handleThemeChange);
-
-  //   // 사용자 테마 기본 설정
-  //   if (
-  //     localStorage.theme === 'dark' ||
-  //     (!('theme' in localStorage) && darkModeMediaQuery.matches)
-  //   ) {
-  //     document.documentElement.classList.add('dark');
-  //   } else {
-  //     document.documentElement.classList.remove('dark');
-  //   }
-
-  //   return () => {
-  //     darkModeMediaQuery.removeEventListener('change', handleThemeChange);
-  //   };
-  // }, []);
-
   return (
     <BrowserRouter>
       <div className='font-sans duration-300'>
