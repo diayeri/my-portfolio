@@ -66,7 +66,7 @@ export function Button({
           {iconLeft}
         </span>
       )}
-      {children}
+      <span className='font-mono'>{children}</span>
       {iconRight && (
         <span className={`[&>svg]:w-full [&>svg]:h-full ${sizes[size].icon}`}>
           {iconRight}

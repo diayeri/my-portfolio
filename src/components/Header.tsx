@@ -15,8 +15,11 @@ const Header: React.FC<HeaderProps> = () => {
   return (
     <header className='fixed top-0 z-50 flex items-center justify-between w-full px-6 py-4 border-b backdrop-blur-lg border-gray-200/70'>
       <div className='flex items-center'>
-        <Link to='/' className='text-base font-bold hover:text-primary-light'>
-          UI 개발자, 정다영
+        <Link
+          to='/'
+          className='font-mono text-base font-bold hover:text-primary-light'
+        >
+          DtoF
         </Link>
       </div>
 
@@ -27,7 +30,7 @@ const Header: React.FC<HeaderProps> = () => {
             <li key={item.to} className='w-full'>
               <Link
                 to={item.to}
-                className='text-base text-nowrap hover:text-primary-light'
+                className='font-mono text-sm text-nowrap hover:text-primary-light'
               >
                 {item.label}
               </Link>
