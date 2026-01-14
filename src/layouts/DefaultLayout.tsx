@@ -4,9 +4,9 @@ import Header from '@/components/Header';
 
 const DefaultLayout: React.FC = () => {
   return (
-    <div className='w-full h-screen text-xs duration-300 text-text-light md:text-sm lg:text-base'>
+    <div className='w-full h-screen text-xs duration-300'>
       <Header />
-      <main className='w-full flex-grow overflow-y-auto h-[100vh]'>
+      <main className='flex-grow w-full h-screen overflow-y-auto'>
         <Outlet />
       </main>
       <footer className='w-full mt-8 text-xs text-left text-secondary-light'>

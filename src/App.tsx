@@ -100,7 +100,7 @@ const AppRoutes = () => {
                   <p className='mb-8 text-xl'>Page not found</p>
                   <a
                     href='/projects'
-                    className='inline-flex items-center px-6 py-3 text-white transition-opacity rounded-lg bg-primary-light dark:bg-primary-dark hover:opacity-90'
+                    className='inline-flex items-center px-6 py-3 text-white transition-opacity rounded-lg bg-primary-light hover:opacity-90'
                   >
                     Go Projects
                     <svg

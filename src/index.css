@@ -25,9 +25,9 @@
     --color-background-dark: #f3f0ed;
 
     /* Text */
-    --color-text: #1a2746; /* 진한 하늘 남색 텍스트 */
-    --color-text-light: #22305a; /* 보조 텍스트 */
-    --color-text-dark: #0f1a33; /* 강조/딥 텍스트 */
+    --color-text: #333;
+    --color-text-light: #666; /* 보조 텍스트 */
+    --color-text-dark: #222; /* 강조/딥 텍스트 */
 
     /* Surface (카드/컨테이너) */
     --color-surface: #fff;
@@ -80,7 +80,9 @@
     /* @apply bg-background text-text transition-colors duration-300; */
     margin: 0;
     height: 100vh;
+  }
 
+  .bg-ani-gradient {
     /* 처음 그라데이션 세팅 */
     background: linear-gradient(
       -45deg,
