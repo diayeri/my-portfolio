@@ -170,9 +170,13 @@ const elements = [
   { className: 'shirts', count: 1 },
   { className: 'bg', count: 3 },
 ];
-export default function MainAnimation() {
+export default function MainAnimation(props: { isFirstVisit: boolean }) {
+  const { isFirstVisit } = props;
+
   return (
-    <section className={styles.animation}>
+    <section
+      className={`${styles.animation} ${isFirstVisit ? '' : styles['animation-done']}`}
+    >
       {elements.map(({ className, count }, i) =>
         Array.from({ length: count }, (_, j) => (
           <div

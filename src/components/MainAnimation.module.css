@@ -68,6 +68,11 @@
   animation: pixel 2s forwards 2.5s;
   overflow: hidden;
 }
+.animation-done {
+  border-radius: 50%;
+  transform: scale(11%, 11%) translate(0, -260px) rotate(15deg);
+  animation: none;
+}
 .bg {
   animation: bg 1s both alternate infinite 1.5s;
 }
