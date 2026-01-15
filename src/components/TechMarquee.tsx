@@ -14,6 +14,7 @@ export function TechMarquee() {
     { src: '/images/logos/figma.svg', alt: 'Figma' },
     { src: '/images/logos/photoshop.svg', alt: 'Photoshop' },
     { src: '/images/logos/illustrator.svg', alt: 'Illustrator' },
+    { src: '/images/logos/storybook.svg', alt: 'Storybook' },
     { src: '/images/logos/framer.svg', alt: 'Framer' },
     { src: '/images/logos/git.svg', alt: 'Git' },
   ];
@@ -35,7 +36,7 @@ export function TechMarquee() {
             />
             {/* hover 시 alt 텍스트 */}
             <span
-              className={`absolute bottom-0 px-1 py-[2px] mb-2 text-xs font-semibold text-white bg-black/70 rounded pointer-events-none ${styles.alt}`}
+              className={`absolute bottom-0 px-1 py-[2px] mb-2 text-sm font-medium backdrop-blur-md text-white bg-black/10 rounded pointer-events-none ${styles.alt}`}
             >
               {logo.alt}
             </span>
