@@ -4,8 +4,8 @@ export default function Timeline() {
   return (
     <section className='flex w-full px-10 py-20'>
       {/* Left */}
-      <div className='w-1/2 pr-40'>
-        <h2 className='text-5xl font-bold'>Career History</h2>
+      <div className='w-1/2 pr-40 top-20'>
+        <h2 className='title'>Career History</h2>
         <div className='flex flex-col gap-2 mt-6 text-sm text-gray-500 break-keep'>
           <p>
             UI 개발로 경력을 시작한 후, 디자인과 프론트엔드까지 영역을 확장하며
@@ -16,10 +16,7 @@ export default function Timeline() {
             완성도를 높였으며, React와 TypeScript 환경에서 개발자 및 디자이너와
             협업하며 원활한 소통을 이어왔습니다.
           </p>
-          <p>
-            앞으로는 재미와 의미를 동시에 느낄 수 있는 프로젝트에서 풀스택으로
-            역량을 키워가며 성장하고 싶습니다.
-          </p>
+          <p>앞으로의 프로젝트에서는 풀스택으로 역량을 키워가고 싶습니다.</p>
         </div>
       </div>
       {/* Right */}

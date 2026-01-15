@@ -1,13 +1,12 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import React, { useEffect, lazy, Suspense } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import './App.css';
 import { OneTimeProvider } from './context/OneTimeContext';
 import DefaultLayout from './layouts/DefaultLayout';
 import Home from './pages/Home';
 import Projects from './pages/Projects';
-import About from './pages/About';
-import Contact from './pages/Contact';
-import { initializeGoogleAnalytics, trackPageView } from './utils/analytics';
+import Page404 from './pages/Page404';
+import { trackPageView } from './utils/analytics';
 import { getSiteTitle } from './utils/env';
 
 // 지연 로딩되는 컴포넌트들
@@ -91,37 +90,7 @@ const AppRoutes = () => {
                 />
               }
             />
-            <Route path='about' element={<About />} />
-            <Route path='contact' element={<Contact />} />
-            <Route
-              path='*'
-              element={
-                <div className='py-20 text-center'>
-                  <h1 className='mb-4 text-4xl font-bold'>404</h1>
-                  <p className='mb-8 text-xl'>Page not found</p>
-                  <a
-                    href='/projects'
-                    className='inline-flex items-center px-6 py-3 text-white transition-opacity rounded-lg bg-primary-light hover:opacity-90'
-                  >
-                    Go Projects
-                    <svg
-                      xmlns='http://www.w3.org/2000/svg'
-                      className='w-5 h-5 ml-2'
-                      fill='none'
-                      viewBox='0 0 24 24'
-                      stroke='currentColor'
-                    >
-                      <path
-                        strokeLinecap='round'
-                        strokeLinejoin='round'
-                        strokeWidth={2}
-                        d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'
-                      />
-                    </svg>
-                  </a>
-                </div>
-              }
-            />
+            <Route path='*' element={<Page404 />} />
           </Route>
         </Routes>
       </Suspense>

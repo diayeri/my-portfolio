@@ -7,8 +7,8 @@ interface HeaderProps {
 
 const navItems = [
   { to: '/projects', label: 'Projects' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' },
+  // { to: '/about', label: 'About' },
+  // { to: '/contact', label: 'Contact' },
 ];
 
 const Header: React.FC<HeaderProps> = () => {

@@ -32,7 +32,7 @@ export function TechMarquee() {
             <img
               src={logo.src}
               alt={logo.alt}
-              className='w-auto h-10 transition duration-200 opacity-70 grayscale hover:opacity-100 hover:grayscale-0'
+              className='w-auto h-10 transition duration-200 opacity-50 grayscale hover:opacity-100 hover:grayscale-0'
             />
             {/* hover 시 alt 텍스트 */}
             <span

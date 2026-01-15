@@ -97,6 +97,7 @@ export function Button(props: ButtonProps) {
         href={props.href}
         className={classes}
         target='_blank'
+        rel='noopener'
       >
         {content}
       </a>
