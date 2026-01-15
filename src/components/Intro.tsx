@@ -3,7 +3,7 @@ import { TechMarquee } from './TechMarquee';
 export default function Intro() {
   return (
     <section className='flex flex-col items-center w-full py-20'>
-      <div className='flex flex-col gap-2 mb-12 text-base text-center'>
+      <div className='mb-12 space-y-2 text-base text-center'>
         <p>
           <strong className='text-primary-dark'>
             UI 디자인, 프론트엔드 개발을 주도

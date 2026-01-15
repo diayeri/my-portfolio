@@ -1,5 +1,6 @@
 import Hero from '@/components/Hero';
 import Intro from '@/components/Intro';
+import Timeline from '@/components/Timeline';
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <Intro />
       {/* Projects */}
       {/* Career History */}
+      <Timeline />
     </div>
   );
 };
