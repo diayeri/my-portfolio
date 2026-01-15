@@ -8,7 +8,7 @@ import { Github, ArrowDown } from 'lucide-react';
 import { motion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 
-export function Hero() {
+export default function Hero() {
   const navigate = useNavigate();
 
   const { flags, setFlag } = useOneTime();
