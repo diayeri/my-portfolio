@@ -110,12 +110,6 @@
   }
 }
 
-/* 오버스크롤 튕김방지 */
-html,
-body {
-  overscroll-behavior: none;
-}
-
 /* 스크롤바 숨기기 */
 ::-webkit-scrollbar {
   display: none;
