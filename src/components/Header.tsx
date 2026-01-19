@@ -5,11 +5,11 @@ interface HeaderProps {
   className?: string;
 }
 
-const navItems = [
-  { to: '/projects', label: 'Projects' },
-  // { to: '/about', label: 'About' },
-  // { to: '/contact', label: 'Contact' },
-];
+// const navItems = [
+//   { to: '/projects', label: 'Projects' },
+//   { to: '/about', label: 'About' },
+//   { to: '/contact', label: 'Contact' },
+// ];
 
 const Header: React.FC<HeaderProps> = () => {
   return (
@@ -17,14 +17,15 @@ const Header: React.FC<HeaderProps> = () => {
       <div className='flex items-center'>
         <Link
           to='/'
-          className='font-mono text-base font-bold hover:text-primary-light'
+          className='font-mono text-base font-bold text-gray-700 hover:text-primary-light'
         >
           DtoD
         </Link>
       </div>
 
+      {/* <p className='text-sm text-white/70'>UI Developer, Dayoung Jung</p> */}
       {/* 내비게이션 메뉴 */}
-      <nav>
+      {/* <nav>
         <ul className='flex w-full gap-10'>
           {navItems.map((item) => (
             <li key={item.to} className='w-full'>
@@ -37,7 +38,7 @@ const Header: React.FC<HeaderProps> = () => {
             </li>
           ))}
         </ul>
-      </nav>
+      </nav> */}
     </header>
   );
 };

@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useOneTime } from '@/context/OneTimeContext';
 import MainAnimation from '@/components/MainAnimation';
 import { ScrollIndicator } from '@/components/ScrollIndicator';
@@ -9,8 +8,6 @@ import { motion } from 'framer-motion';
 import type { HTMLMotionProps } from 'framer-motion';
 
 export default function Hero() {
-  const navigate = useNavigate();
-
   const { flags, setFlag } = useOneTime();
   const isFirstVisit = flags['hero'] !== false; // undefined or true -> 처음
 
@@ -30,6 +27,13 @@ export default function Hero() {
       ease: [0.2, 1, 0.4, 1],
     },
   });
+
+  const handleScrollDown = () => {
+    window.scrollBy({
+      top: window.innerHeight,
+      behavior: 'smooth',
+    });
+  };
 
   return (
     <section className='relative flex flex-col items-center justify-center w-full h-screen py-10 text-center bg-ani-gradient'>
@@ -64,11 +68,8 @@ export default function Hero() {
           >
             Github
           </Button>
-          <Button
-            onClick={() => navigate('/projects')}
-            iconRight={<ArrowDown />}
-          >
-            More
+          <Button onClick={handleScrollDown} iconRight={<ArrowDown />}>
+            Explore
           </Button>
         </div>
       </motion.div>

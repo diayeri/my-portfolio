@@ -1,10 +1,29 @@
 import React from 'react';
 import { Link, useParams, Navigate, useNavigate } from 'react-router-dom';
 import AnimatedElement from './AnimatedElement';
-import type { ProjectData } from '@/types/ProjectData';
+import type { ProjectsData } from '@/data/projectsData';
+import Page404 from '@/pages/Page404';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
+
+interface ProjectInfoItemProps {
+  label: string;
+  value: string | React.ReactNode;
+  className?: string;
+}
+
+const ProjectInfoItem: React.FC<ProjectInfoItemProps> = ({
+  label,
+  value,
+  className,
+}) => (
+  <div className={`py-2.5 ${className}`}>
+    <h2 className='text-sm font-medium text-gray-400'>{label}</h2>
+    <p className='text-base text-gray-700'>{value}</p>
+  </div>
+);
 
 interface ProjectDetailProps {
-  projects: ProjectData[];
+  projects: ProjectsData[];
 }
 
 /**
@@ -16,206 +35,159 @@ interface ProjectDetailProps {
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ projects }) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const [selectedImage, setSelectedImage] = React.useState<string | undefined>(undefined);
-  
-  // URL 파라미터에서 현재 프로젝트 ID를 찾음
-  const projectId = parseInt(id || '0');
-  const project = projects.find(p => p.id === projectId);
-  
-  // 프로젝트를 찾지 못한 경우 홈페이지의 프로젝트 섹션으로 리다이렉트
+
+  const projectId = id; // URL 파라미터에서 현재 프로젝트 ID를 찾음
+  const project = projects.find((p) => p.id === projectId);
+
   if (!project) {
-    return <Navigate to="/projects" replace />;
+    return <Page404 />;
   }
-  
+
   // 이전/다음 프로젝트 ID 계산
-  const currentIndex = projects.findIndex(p => p.id === projectId);
-  const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
-  const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
-  
+  const featuredProjects = projects
+    .filter((p) => p.featured)
+    .sort((a, b) => a.featured!.order - b.featured!.order);
+  const currentIndex = featuredProjects.findIndex((p) => p.id === project.id);
+  const prevProject =
+    currentIndex > 0 ? featuredProjects[currentIndex - 1] : null;
+  const nextProject =
+    currentIndex < featuredProjects.length - 1
+      ? featuredProjects[currentIndex + 1]
+      : null;
+
   // 프로젝트 목록(Projects) 페이지로 이동
   const goToProjects = (e: React.MouseEvent) => {
     e.preventDefault();
     navigate('/projects');
   };
-  
+
   return (
-    <div className="max-w-6xl mx-auto py-10 px-4">
-      <AnimatedElement animation="fade-up" duration={800}>
+    <div className='max-w-6xl px-4 py-10 mx-auto'>
+      <AnimatedElement animation='fade-up' duration={800}>
+        {/* <a
+          href='/projects'
+          className='inline-flex items-center mb-6 text-primary-light dark:text-primary-dark hover:underline'
+          onClick={goToProjects}
+        >
+          Back to Projects
+        </a> */}
         {/* 프로젝트 헤더 */}
-        <div className="mb-10">
-          <a 
-            href="/projects"
-            className="inline-flex items-center text-primary-light dark:text-primary-dark mb-6 hover:underline"
-            onClick={goToProjects}
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-            </svg>
-            Back to Projects
-          </a>
-          
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">{project.title}</h1>
-          
-          <div className="flex flex-wrap gap-2 mb-6">
-            {project.tech.map((tech, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 rounded-full text-sm bg-gray-200 dark:bg-gray-800"
-              >
-                {tech}
-              </span>
-            ))}
+        <div className='flex py-20'>
+          {/* left */}
+          <div>
+            <h1 className='mb-6 text-3xl font-bold md:text-4xl lg:text-6xl'>
+              {project.title}
+            </h1>
+            <p className='mb-6 text-base text-gray-700'>
+              {project.description}
+            </p>
+            <div className='flex flex-wrap gap-2'>
+              {project.tech.map((tech, index) => (
+                <span
+                  key={index}
+                  className='px-3 py-1 text-sm bg-gray-200 rounded-full'
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
           </div>
-        </div>
-      </AnimatedElement>
-      
-      {/* 프로젝트 콘텐츠 */}
-      <AnimatedElement animation="fade-up" duration={800} delay={200}>
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* 이미지 */}
-          <div className="lg:col-span-2">
-            {Array.isArray(project.images) && project.images.length > 1 ? (
-              <div>
-                {/* Main image display */}
-                <img
-                  src={selectedImage || project.images[0]}
-                  alt={project.title}
-                  className="w-full h-auto rounded-xl shadow-lg mb-4 transition-all duration-300"
-                  key={selectedImage || project.images[0]}
-                />
-                {/* Thumbnails gallery */}
-                <div className="flex gap-2 overflow-x-auto pb-2">
-                  {project.images.map((img, idx) => (
-                    <button
-                      key={img}
-                      className={`border-2 rounded-lg overflow-hidden focus:outline-none transition-all duration-200 ${
-                        (selectedImage || project.images[0]) === img
-                          ? 'border-primary-light dark:border-primary-dark scale-105'
-                          : 'border-transparent opacity-70 hover:opacity-100'
-                      }`}
-                      style={{ minWidth: 64, minHeight: 40 }}
-                      onClick={() => setSelectedImage(img)}
-                      tabIndex={0}
-                      aria-label={`Show image ${idx + 1}`}
+
+          {/* right */}
+          <div className='pl-20 ml-auto'>
+            <div className='flex gap-10'>
+              <ProjectInfoItem label='Role' value={project.category} />
+              <ProjectInfoItem label='Client' value={project.client} />
+              <ProjectInfoItem
+                label='Period'
+                value={`${project.startDate} ~ ${project.endDate ?? 'Present'}`}
+              />
+            </div>
+            {project.links && (
+              <ProjectInfoItem
+                className='col-span-full'
+                label='Link'
+                value={project.links.map((link, idx) => (
+                  <React.Fragment key={idx}>
+                    <a
+                      key={idx}
+                      href={link}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='mr-3 text-sm underline'
                     >
-                      <img
-                        src={img}
-                        alt={`Thumbnail ${idx + 1}`}
-                        className="w-16 h-10 object-cover"
-                        loading="lazy"
-                      />
-                    </button>
-                  ))}
-                </div>
-              </div>
-            ) : (
-              <img
-                src={Array.isArray(project.images) && project.images.length === 1 ? project.images[0] : project.image}
-                alt={project.title}
-                className="w-full h-auto rounded-xl shadow-lg"
+                      {link}
+                    </a>
+                  </React.Fragment>
+                ))}
+              />
+            )}
+            {project.github && (
+              <ProjectInfoItem
+                className='col-span-full'
+                label='GitHub'
+                value={
+                  <a
+                    href={project.github}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='text-sm underline'
+                  >
+                    {project.github.replace('https://github.com/', '')}
+                  </a>
+                }
               />
             )}
           </div>
-          
-          {/* 상세 정보 */}
-          <div className="lg:col-span-1">
-            <div className="prose dark:prose-invert max-w-none">
-              <h3 className="text-xl font-semibold mb-4">About this project</h3>
-              <p className="text-gray-700 dark:text-gray-300">
-                {project.description}
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 mt-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi.
-                Maecenas non tortor felis, vitae condimentum libero. Integer auctor
-                tincidunt magna, sit amet eleifend nisl mattis id.
-              </p>
-              
-              <div className="mt-6">
-                <h4 className="text-lg font-medium mb-3">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.map((tech, index) => (
-                    <span
-                      key={index}
-                      className="px-3 py-1 rounded-full text-sm bg-gray-200 dark:bg-gray-800"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex flex-wrap gap-2 mt-8">
-                  {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3 py-1.5 text-sm bg-primary-light dark:bg-primary-dark text-white rounded-md hover:opacity-90 transition-opacity min-w-[110px]"
-                    >
-                      <span>View Live Demo</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                      </svg>
-                    </a>
-                  )}
-                  
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center px-3 py-1.5 text-sm border-2 border-primary-light dark:border-primary-dark text-primary-light dark:text-primary-dark rounded-md hover:bg-primary-light hover:text-secondary-dark dark:hover:bg-primary-dark dark:hover:text-secondary-light transition-all min-w-[110px]"
-                    >
-                      <span>View Source Code</span>
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-2" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
-                      </svg>
-                    </a>
-                  )}
+        </div>
+      </AnimatedElement>
+
+      {/* 프로젝트 콘텐츠 */}
+      {/* 상세 정보 */}
+      <div className='text-base text-gray-700'>
+        <p className=''>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+          facilisi. Maecenas non tortor felis, vitae condimentum libero. Integer
+          auctor tincidunt magna, sit amet eleifend nisl mattis id.
+        </p>
+      </div>
+
+      {/* 이전/다음 프로젝트 내비게이션 */}
+      <div className='flex items-center justify-between pt-8 mt-20 border-t border-gray-200'>
+        <div>
+          {prevProject && (
+            <Link
+              to={`/projects/${prevProject.id}`}
+              className='inline-flex items-center group'
+            >
+              <ChevronLeft className='text-gray-700' />
+              <div>
+                <div className='text-sm text-gray-400'>Previous Project</div>
+                <div className='text-lg font-medium text-gray-700'>
+                  {prevProject.title}
                 </div>
               </div>
-            </div>
-          </div>
+            </Link>
+          )}
         </div>
-      </AnimatedElement>
-      
-      {/* 이전/다음 프로젝트 내비게이션 */}
-      <AnimatedElement animation="fade-up" duration={800} delay={600}>
-        <div className="flex justify-between items-center border-t border-gray-200 dark:border-gray-700 pt-10">
-          <div>
-            {prevProject && (
-              <Link 
-                to={`/projects/${prevProject.id}`}
-                className="inline-flex items-center group"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-gray-500 group-hover:text-primary-light dark:group-hover:text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-                <div>
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Previous Project</div>
-                  <div className="text-primary-light dark:text-primary-dark">{prevProject.title}</div>
+
+        <div className='text-right'>
+          {nextProject && (
+            <Link
+              to={`/projects/${nextProject.id}`}
+              className='inline-flex items-center group'
+            >
+              <div className='mr-2'>
+                <div className='text-sm text-gray-400'>Next Project</div>
+                <div className='text-lg font-medium text-gray-700'>
+                  {nextProject.title}
                 </div>
-              </Link>
-            )}
-          </div>
-          
-          <div className="text-right">
-            {nextProject && (
-              <Link 
-                to={`/projects/${nextProject.id}`}
-                className="inline-flex items-center group"
-              >
-                <div className="mr-2">
-                  <div className="text-sm text-gray-500 dark:text-gray-400">Next Project</div>
-                  <div className="text-primary-light dark:text-primary-dark">{nextProject.title}</div>
-                </div>
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-500 group-hover:text-primary-light dark:group-hover:text-primary-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            )}
-          </div>
+              </div>
+              <ChevronRight className='text-gray-700' />
+            </Link>
+          )}
         </div>
-      </AnimatedElement>
+      </div>
     </div>
   );
 };

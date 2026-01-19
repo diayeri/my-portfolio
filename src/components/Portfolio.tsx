@@ -1,25 +1,32 @@
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Button } from './Button';
-import { ArrowRight } from 'lucide-react';
+import { useState, useEffect, useMemo } from 'react';
+// import { useNavigate } from 'react-router-dom';
+// import { Button } from './Button';
+// import { ArrowRight } from 'lucide-react';
 import { projectsData } from '@/data/projectsData';
 
 const Portfolio = () => {
-  const [activeProject, setActiveProject] = useState(projectsData[0]);
-  const navigate = useNavigate();
-  useEffect(() => {
-    projectsData.forEach((project) => {
-      const img = new Image();
-      img.src = project.cover;
-    });
+  const featuredProjects = useMemo(() => {
+    return projectsData
+      .filter((p) => p.featured !== undefined)
+      .sort((a, b) => a.featured!.order! - b.featured!.order!);
   }, []);
+
+  const [activeProject, setActiveProject] = useState(featuredProjects[0]);
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    featuredProjects.forEach((project) => {
+      const img = new Image();
+      img.src = project.featured!.cover;
+    });
+  }, [featuredProjects]);
 
   return (
     <section className='bg-black wrapper-content'>
       <div className='content'>
         <div className='flex justify-between w-full'>
           <h2 className='mr-auto text-white title'>Featured Projects</h2>
-          <Button
+          {/* <Button
             size='sm'
             variant='outline'
             className='hover:text-white hover:border-white'
@@ -27,20 +34,20 @@ const Portfolio = () => {
             onClick={() => navigate('/projects')}
           >
             All Projects
-          </Button>
+          </Button> */}
         </div>
         <div className='flex items-center mt-10'>
           {/* 미리보기 영역 */}
           <div className='w-1/2 h-[520px] pr-8 rounded overflow-hidden flex items-center justify-center'>
             <img
-              src={activeProject.cover}
+              src={activeProject.featured!.cover}
               alt={activeProject.title}
               className='object-contain object-center w-full h-full transition-all duration-300'
             />
           </div>
           {/* 프로젝트 리스트 */}
           <ul className='flex flex-col w-1/2 gap-0 pl-12'>
-            {projectsData.map((project) => (
+            {featuredProjects.map((project) => (
               <li
                 key={project.id}
                 onMouseEnter={() => setActiveProject(project)}

@@ -9,6 +9,7 @@ import Projects from './pages/Projects';
 import Page404 from './pages/Page404';
 import { trackPageView } from './utils/analytics';
 import { getSiteTitle } from './utils/env';
+import { projectsData } from './data/projectsData';
 
 // 지연 로딩되는 컴포넌트들
 const ProjectDetail = lazy(() => import('./components/ProjectDetail'));
@@ -54,43 +55,7 @@ const AppRoutes = () => {
             <Route path='projects' element={<Projects />} />
             <Route
               path='projects/:id'
-              element={
-                <ProjectDetail
-                  projects={[
-                    {
-                      id: 1,
-                      title: 'E-commerce Platform',
-                      description:
-                        'A modern e-commerce platform built with React, TypeScript and Node.js',
-                      tech: ['React', 'Node.js', 'MongoDB', 'Express'],
-                      image:
-                        'https://placehold.co/1200x600/svg?text=E-Commerce+Project',
-                      link: 'https://example-ecommerce.com',
-                      github: 'https://github.com/username/ecommerce',
-                    },
-                    {
-                      id: 2,
-                      title: 'Task Management App',
-                      description:
-                        'A collaborative task management application with real-time updates',
-                      tech: ['React', 'Firebase', 'Redux', 'Material UI'],
-                      image:
-                        'https://placehold.co/1200x600/svg?text=Task+Manager',
-                      link: 'https://example-taskapp.com',
-                    },
-                    {
-                      id: 3,
-                      title: 'Portfolio Website',
-                      description:
-                        'A responsive personal portfolio website with dark mode support',
-                      tech: ['React', 'TypeScript', 'Tailwind CSS', 'Vite'],
-                      image: 'https://placehold.co/1200x600/svg?text=Portfolio',
-                      link: 'https://example-portfolio.com',
-                      github: 'https://github.com/username/portfolio',
-                    },
-                  ]}
-                />
-              }
+              element={<ProjectDetail projects={projectsData} />}
             />
             <Route path='*' element={<Page404 />} />
           </Route>
