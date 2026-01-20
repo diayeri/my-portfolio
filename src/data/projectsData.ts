@@ -46,7 +46,7 @@ export interface ProjectsData {
   title: string;
   startDate: string;
   endDate?: string | null; // 없으면 진행중
-  category: string | string[];
+  category: string;
   tech: string[];
   client: string;
 
@@ -105,7 +105,7 @@ export const projectsData: ProjectsData[] = [
     title: 'Muna',
     startDate: '2024.09',
     endDate: '2024.10',
-    category: ['Frontend', 'Design'],
+    category: 'Frontend',
     tech: ['React', 'TypeScript', 'Redux Toolkit', 'Firebase', 'SCSS', 'Figma'],
     client: '이스트소프트 프론트엔드 부트캠프 1기',
     featured: {
@@ -116,7 +116,7 @@ export const projectsData: ProjectsData[] = [
   },
   {
     id: 'klaybay',
-    title: 'Klaybay NFT MarketPlace',
+    title: 'Klaybay, Admin',
     startDate: '2022.03',
     endDate: '2023.02',
     category: 'UI Dev',

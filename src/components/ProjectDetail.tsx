@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useParams, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import AnimatedElement from './AnimatedElement';
 import type { ProjectsData } from '@/data/projectsData';
 import Page404 from '@/pages/Page404';
@@ -56,10 +56,10 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projects }) => {
       : null;
 
   // 프로젝트 목록(Projects) 페이지로 이동
-  const goToProjects = (e: React.MouseEvent) => {
-    e.preventDefault();
-    navigate('/projects');
-  };
+  // const goToProjects = (e: React.MouseEvent) => {
+  //   e.preventDefault();
+  //   navigate('/projects');
+  // };
 
   return (
     <div className='max-w-6xl px-4 py-10 mx-auto'>
@@ -161,7 +161,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ projects }) => {
               className='inline-flex items-center group'
             >
               <ChevronLeft className='text-gray-700' />
-              <div>
+              <div className='ml-2'>
                 <div className='text-sm text-gray-400'>Previous Project</div>
                 <div className='text-lg font-medium text-gray-700'>
                   {prevProject.title}
