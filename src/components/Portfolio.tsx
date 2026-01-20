@@ -52,10 +52,11 @@ const Portfolio = () => {
                 key={project.id}
                 onMouseEnter={() => setActiveProject(project)}
               >
-                <a
+                {/* <a
                   href={`/projects/${project.id}`}
                   className='flex items-center py-6 border-b border-gray-500 cursor-pointer'
-                >
+                > */}
+                <div className='flex items-center py-6 border-b border-gray-500'>
                   <h3
                     className={`text-3xl font-semibold transition-colors duration-200 ${
                       activeProject.id === project.id
@@ -74,7 +75,8 @@ const Portfolio = () => {
                   >
                     {project.category}
                   </span>
-                </a>
+                </div>
+                {/* </a> */}
               </li>
             ))}
           </ul>

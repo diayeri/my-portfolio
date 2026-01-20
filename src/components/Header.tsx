@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 
 // Header 컴포넌트 props 타입 정의
 interface HeaderProps {
@@ -20,6 +21,16 @@ const Header: React.FC<HeaderProps> = () => {
           className='font-mono text-base font-bold text-gray-700 hover:text-primary-light'
         >
           DtoD
+        </Link>
+      </div>
+      <div>
+        <Link
+          to='https://github.com/diayeri/my-portfolio'
+          target='_blank'
+          className='flex items-center gap-1 text-sm text-gray-500 hover:text-primary-light'
+        >
+          <span>🚧 Portfolio in Progress</span>
+          <ArrowRight className='w-4' />
         </Link>
       </div>
 
