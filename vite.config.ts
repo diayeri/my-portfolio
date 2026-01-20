@@ -9,4 +9,7 @@ export default defineConfig({
       '@': resolve(__dirname, 'src'),
     },
   },
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
 });
